@@ -7,7 +7,10 @@ class WebSocketChatManager:
         self.name = None
         self.room = None
 
-    async def initialize_data(self):
+    async def accept(self) -> None:
+        await self.websocket.accept()
+
+    async def initialize_data(self) -> None:
         data = await self.websocket.receive_json()
         self.name = data.get("name")
         self.room = data.get("room")
